@@ -8,12 +8,9 @@
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-database-compat.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-/* ===== RESET & BASE ===== */
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'DM Sans',sans-serif;background:#F1F5F9;color:#0F172A;min-height:100vh}
 input,select,textarea,button{font-family:inherit}
-
-/* ===== HEADER ===== */
 .topbar{background:#0F172A;padding:0 28px;display:flex;align-items:center;justify-content:space-between;height:54px;position:sticky;top:0;z-index:100}
 .topbar-left{display:flex;align-items:center;gap:12px}
 .topbar-brand{font-size:16px;font-weight:700;color:#F8FAFC;letter-spacing:-.02em}
@@ -22,93 +19,50 @@ input,select,textarea,button{font-family:inherit}
 .sync-dot{font-size:11px;color:#475569;transition:color .3s}
 .sync-dot.ok{color:#34D399}
 .user-tag{font-size:11px;color:#64748B;background:#1E293B;padding:3px 10px;border-radius:20px}
-
-/* ===== NAV ===== */
 .navbar{background:#0F172A;border-top:1px solid #1E293B;padding:0 28px;display:flex;gap:2px;overflow-x:auto}
 .nav-btn{padding:10px 16px;font-size:13px;font-weight:400;color:#64748B;background:transparent;border:none;border-bottom:2px solid transparent;cursor:pointer;white-space:nowrap;transition:all .15s}
 .nav-btn.active{color:#F8FAFC;font-weight:600;border-bottom-color:#3B82F6}
 .nav-btn:hover:not(.active){color:#94A3B8}
-
-/* ===== LAYOUT ===== */
 .main{max-width:1120px;margin:0 auto;padding:24px 20px}
-
-/* ===== CARDS ===== */
 .card{background:#fff;border-radius:12px;border:1px solid #E2E8F0;padding:20px 22px;margin-bottom:16px}
 .card-title{font-size:11px;font-weight:600;color:#94A3B8;text-transform:uppercase;letter-spacing:.06em;margin-bottom:16px}
-
-/* ===== KPI GRID ===== */
 .kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin-bottom:18px}
 .kpi{border-radius:10px;padding:14px 16px}
 .kpi-lbl{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px;opacity:.8}
 .kpi-val{font-size:26px;font-weight:700;line-height:1}
 .kpi-sub{font-size:10px;margin-top:3px;opacity:.7}
-.kpi-default{background:#F8FAFC;border:1px solid #E2E8F0}
-.kpi-default .kpi-lbl{color:#64748B}
-.kpi-default .kpi-val{color:#0F172A}
-.kpi-default .kpi-sub{color:#94A3B8}
-.kpi-yellow{background:#FFFBEB;border:1px solid #FDE68A}
-.kpi-yellow .kpi-lbl{color:#92400E}
-.kpi-yellow .kpi-val{color:#B45309}
-.kpi-yellow .kpi-sub{color:#D97706}
-.kpi-green{background:#F0FDF4;border:1px solid #86EFAC}
-.kpi-green .kpi-lbl{color:#166534}
-.kpi-green .kpi-val{color:#15803D}
-.kpi-green .kpi-sub{color:#16A34A}
-.kpi-red{background:#FFF1F2;border:1px solid #FCA5A5}
-.kpi-red .kpi-lbl{color:#9F1239}
-.kpi-red .kpi-val{color:#B91C1C}
-.kpi-red .kpi-sub{color:#DC2626}
-.kpi-blue{background:#EFF6FF;border:1px solid #93C5FD}
-.kpi-blue .kpi-lbl{color:#1E3A5F}
-.kpi-blue .kpi-val{color:#1D4ED8}
-.kpi-blue .kpi-sub{color:#2563EB}
-
-/* ===== FUNIL ===== */
+.kpi-default{background:#F8FAFC;border:1px solid #E2E8F0}.kpi-default .kpi-lbl{color:#64748B}.kpi-default .kpi-val{color:#0F172A}.kpi-default .kpi-sub{color:#94A3B8}
+.kpi-yellow{background:#FFFBEB;border:1px solid #FDE68A}.kpi-yellow .kpi-lbl{color:#92400E}.kpi-yellow .kpi-val{color:#B45309}.kpi-yellow .kpi-sub{color:#D97706}
+.kpi-green{background:#F0FDF4;border:1px solid #86EFAC}.kpi-green .kpi-lbl{color:#166534}.kpi-green .kpi-val{color:#15803D}.kpi-green .kpi-sub{color:#16A34A}
+.kpi-red{background:#FFF1F2;border:1px solid #FCA5A5}.kpi-red .kpi-lbl{color:#9F1239}.kpi-red .kpi-val{color:#B91C1C}.kpi-red .kpi-sub{color:#DC2626}
+.kpi-blue{background:#EFF6FF;border:1px solid #93C5FD}.kpi-blue .kpi-lbl{color:#1E3A5F}.kpi-blue .kpi-val{color:#1D4ED8}.kpi-blue .kpi-sub{color:#2563EB}
 .funil{display:flex;align-items:center;gap:0;overflow-x:auto}
 .funil-step{flex:1;text-align:center;padding:14px 8px;min-width:90px}
 .funil-val{font-size:30px;font-weight:700}
 .funil-lbl{font-size:11px;color:#94A3B8;margin-top:3px}
 .funil-arr{font-size:20px;color:#CBD5E1;flex-shrink:0;padding:0 4px}
-
-/* ===== UNIT CARDS ===== */
 .unit-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(158px,1fr));gap:10px}
 .unit-card{background:#fff;border:1px solid #E2E8F0;border-radius:12px;padding:14px 16px}
 .unit-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
 .unit-name{font-size:12px;font-weight:700;color:#374151}
 .unit-badge{font-size:10px;background:#EFF6FF;color:#1D4ED8;padding:2px 7px;border-radius:4px;font-weight:600}
 .unit-metrics{display:grid;grid-template-columns:1fr 1fr;gap:6px}
-.um-val{font-size:18px;font-weight:700}
-.um-lbl{font-size:10px;color:#9CA3AF}
-
-/* ===== TABLE ===== */
+.um-val{font-size:18px;font-weight:700}.um-lbl{font-size:10px;color:#9CA3AF}
 .tbl-wrap{overflow-x:auto}
 table{width:100%;border-collapse:collapse}
 th{text-align:left;padding:9px 10px;font-size:11px;color:#6B7280;font-weight:600;border-bottom:1px solid #E5E7EB;background:#F9FAFB;white-space:nowrap}
 td{padding:9px 10px;font-size:12px;color:#111827;border-bottom:1px solid #F3F4F6;vertical-align:middle}
 tr:last-child td{border-bottom:none}
 tr:hover td{background:#FAFAFA}
-
-/* ===== BADGES ===== */
 .badge{display:inline-block;padding:3px 8px;border-radius:5px;font-size:10px;font-weight:700;white-space:nowrap}
-.b-teste{background:#FEF3C7;color:#92400E}
-.b-aprovado{background:#D1FAE5;color:#065F46}
-.b-desistiu{background:#FEE2E2;color:#991B1B}
-.b-reprovado{background:#FCE7F3;color:#831843}
-.b-chamado{background:#D1FAE5;color:#065F46}
-.b-nao-aceitou{background:#FEF3C7;color:#92400E}
-.b-nao-aprov{background:#FEE2E2;color:#991B1B}
-.b-pendente{background:#F3F4F6;color:#4B5563}
-.b-aberta{background:#EFF6FF;color:#1D4ED8}
-.b-fechada{background:#D1FAE5;color:#065F46}
-.b-pausada{background:#FEF3C7;color:#92400E}
-
-/* ===== DIAS DOTS ===== */
+.b-teste{background:#FEF3C7;color:#92400E}.b-aprovado{background:#D1FAE5;color:#065F46}
+.b-desistiu{background:#FEE2E2;color:#991B1B}.b-reprovado{background:#FCE7F3;color:#831843}
+.b-chamado{background:#D1FAE5;color:#065F46}.b-nao-aceitou{background:#FEF3C7;color:#92400E}
+.b-nao-aprov{background:#FEE2E2;color:#991B1B}.b-pendente{background:#F3F4F6;color:#4B5563}
+.b-aberta{background:#EFF6FF;color:#1D4ED8}.b-fechada{background:#D1FAE5;color:#065F46}.b-pausada{background:#FEF3C7;color:#92400E}
 .dias-row{display:flex;gap:3px;align-items:center}
 .dia-dot{width:11px;height:11px;border-radius:2px}
-.dia-ok{background:#10B981;border:1px solid #059669}
-.dia-pend{background:#E5E7EB;border:1px solid #D1D5DB}
-
-/* ===== FORMS ===== */
+.dia-ok{background:#10B981;border:1px solid #059669}.dia-pend{background:#E5E7EB;border:1px solid #D1D5DB}
 .form-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:12px}
 .fg{display:flex;flex-direction:column;gap:4px}
 .fg label{font-size:11px;color:#6B7280;font-weight:600}
@@ -117,17 +71,14 @@ tr:hover td{background:#FAFAFA}
 .fg textarea{resize:vertical;min-height:52px;font-family:inherit}
 .btn{padding:9px 20px;font-size:13px;font-weight:700;border-radius:8px;border:none;cursor:pointer;transition:opacity .15s}
 .btn:hover{opacity:.88}
-.btn-blue{background:#2563EB;color:#fff}
-.btn-green{background:#059669;color:#fff}
-.btn-gray{background:#E5E7EB;color:#374151}
-.btn-print{background:#475569;color:#fff}
+.btn-blue{background:#2563EB;color:#fff}.btn-green{background:#059669;color:#fff}
+.btn-gray{background:#E5E7EB;color:#374151}.btn-print{background:#475569;color:#fff}
+.btn-red{background:#DC2626;color:#fff}
 .btn-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:4px}
 .filter-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px;align-items:flex-end}
 .filter-row select,.filter-row input{padding:7px 10px;border-radius:7px;border:1px solid #E2E8F0;font-size:12px;color:#374151;background:#fff;outline:none}
 .filter-row label{font-size:11px;color:#6B7280;font-weight:600;display:flex;flex-direction:column;gap:4px}
 .section-sep{height:1px;background:#E2E8F0;margin:18px 0}
-
-/* ===== LOGIN ===== */
 .login-wrap{min-height:100vh;background:#0F172A;display:flex;align-items:center;justify-content:center}
 .login-box{background:#1E293B;border-radius:16px;padding:2.5rem;width:360px;border:1px solid #334155}
 .login-title{font-size:28px;font-weight:700;color:#F8FAFC;margin-bottom:4px}
@@ -135,16 +86,29 @@ tr:hover td{background:#FAFAFA}
 .login-input{width:100%;padding:11px 14px;border-radius:8px;border:1px solid #334155;background:#0F172A;color:#F8FAFC;font-size:14px;margin-bottom:14px;outline:none;font-family:inherit}
 .login-btn{width:100%;padding:11px;border-radius:8px;background:#2563EB;color:#fff;font-weight:700;font-size:14px;border:none;cursor:pointer}
 .login-info{font-size:11px;color:#475569;margin-top:14px;text-align:center}
-
-/* ===== EMPTY ===== */
 .empty{text-align:center;padding:2rem;color:#9CA3AF;font-size:13px}
-
-/* ===== SELECT in table ===== */
 .act-sel{font-size:11px;padding:4px 7px;border-radius:6px;border:1px solid #E2E8F0;background:#F9FAFB;cursor:pointer;color:#374151}
-
-/* ===== PRINT ===== */
+/* action icon buttons */
+.icon-btn{border:none;background:none;cursor:pointer;padding:4px 6px;border-radius:5px;font-size:13px;line-height:1;transition:background .15s}
+.icon-btn:hover{background:#F1F5F9}
+.icon-btn.del:hover{background:#FEE2E2}
+/* MODAL */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:500;align-items:center;justify-content:center}
+.modal-overlay.open{display:flex}
+.modal{background:#fff;border-radius:14px;padding:28px;width:90%;max-width:560px;max-height:90vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,.2)}
+.modal-title{font-size:16px;font-weight:700;color:#111827;margin-bottom:20px;display:flex;justify-content:space-between;align-items:center}
+.modal-close{background:none;border:none;font-size:20px;cursor:pointer;color:#6B7280;line-height:1;padding:2px 6px}
+.modal-footer{display:flex;gap:10px;margin-top:18px;justify-content:flex-end}
+/* confirm delete */
+.confirm-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:600;align-items:center;justify-content:center}
+.confirm-overlay.open{display:flex}
+.confirm-box{background:#fff;border-radius:12px;padding:24px;width:340px;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.2)}
+.confirm-icon{font-size:36px;margin-bottom:10px}
+.confirm-title{font-size:15px;font-weight:700;color:#111827;margin-bottom:6px}
+.confirm-sub{font-size:12px;color:#6B7280;margin-bottom:20px}
+.confirm-btns{display:flex;gap:10px;justify-content:center}
 @media print{
-  .topbar,.navbar,.no-print{display:none!important}
+  .topbar,.navbar,.no-print,.modal-overlay,.confirm-overlay{display:none!important}
   body{background:#fff!important}
   .main{max-width:100%;padding:10px;margin:0}
   .card{border:1px solid #ccc;page-break-inside:avoid;margin-bottom:10px;padding:12px}
@@ -152,8 +116,7 @@ tr:hover td{background:#FAFAFA}
   .kpi{border:1px solid #ccc!important;padding:8px!important}
   .kpi-val{font-size:18px!important}
   .unit-grid{grid-template-columns:repeat(5,1fr)!important;gap:6px}
-  table{font-size:10px}
-  th,td{padding:5px 6px}
+  table{font-size:10px}th,td{padding:5px 6px}
   .print-header{display:block!important}
   @page{size:A4 landscape;margin:10mm}
 }
@@ -161,6 +124,34 @@ tr:hover td{background:#FAFAFA}
 </style>
 </head>
 <body>
+
+<!-- CONFIRM DELETE -->
+<div class="confirm-overlay" id="confirm-overlay">
+  <div class="confirm-box">
+    <div class="confirm-icon">🗑️</div>
+    <div class="confirm-title">Excluir registro?</div>
+    <div class="confirm-sub" id="confirm-sub">Esta ação não pode ser desfeita.</div>
+    <div class="confirm-btns">
+      <button class="btn btn-gray" onclick="closeConfirm()">Cancelar</button>
+      <button class="btn btn-red" id="confirm-ok-btn">Excluir</button>
+    </div>
+  </div>
+</div>
+
+<!-- EDIT MODAL -->
+<div class="modal-overlay" id="modal-overlay">
+  <div class="modal">
+    <div class="modal-title">
+      <span id="modal-title-text">Editar registro</span>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+    <div id="modal-body"></div>
+    <div class="modal-footer">
+      <button class="btn btn-gray" onclick="closeModal()">Cancelar</button>
+      <button class="btn btn-blue" id="modal-save-btn">Salvar alterações</button>
+    </div>
+  </div>
+</div>
 
 <!-- LOGIN -->
 <div class="login-wrap" id="login-screen">
@@ -197,113 +188,73 @@ tr:hover td{background:#FAFAFA}
 
   <div class="main">
 
-    <!-- ======= DASHBOARD ======= -->
+    <!-- DASHBOARD -->
     <div id="tab-dashboard">
       <div class="print-header" id="print-header-text">Hannover RH · Gestão à Vista</div>
-
-      <!-- Filtro de data + botão imprimir -->
       <div class="filter-row no-print" style="margin-bottom:16px">
         <label>Data inicial<input type="date" id="dash-dt-ini" onchange="renderDashboard()"></label>
         <label>Data final<input type="date" id="dash-dt-fim" onchange="renderDashboard()"></label>
         <button class="btn btn-gray" onclick="clearDashFilter()">Limpar filtro</button>
-        <button class="btn btn-print" onclick="printDash()">🖨 Imprimir A4</button>
+        <button class="btn btn-print" onclick="window.print()">🖨 Imprimir A4</button>
       </div>
-
       <div class="kpi-grid" id="kpi-grid"></div>
-
-      <div class="card">
-        <div class="card-title">Funil de recrutamento</div>
-        <div class="funil" id="funil"></div>
-      </div>
-
-      <div class="card">
-        <div class="card-title">Situação por unidade</div>
-        <div class="unit-grid" id="unit-grid"></div>
-      </div>
-
+      <div class="card"><div class="card-title">Funil de recrutamento</div><div class="funil" id="funil"></div></div>
+      <div class="card"><div class="card-title">Situação por unidade</div><div class="unit-grid" id="unit-grid"></div></div>
       <div id="dash-updated" style="font-size:11px;color:#94A3B8;text-align:right;margin-top:8px"></div>
     </div>
 
-    <!-- ======= VAGAS ======= -->
+    <!-- VAGAS -->
     <div id="tab-vagas" style="display:none">
       <div class="filter-row no-print">
-        <label>Unidade
-          <select id="fv-unidade" onchange="renderVagas()">
-            <option value="">Todas</option>
-            <option>Moema</option><option>Tatuapé</option><option>Perdizes</option><option>Tomahawk</option><option>Produção</option>
-          </select>
-        </label>
-        <label>Status
-          <select id="fv-status" onchange="renderVagas()">
-            <option value="">Todos</option>
-            <option>Aberta</option><option>Pausada</option><option>Fechada</option>
-          </select>
-        </label>
+        <label>Unidade<select id="fv-unidade" onchange="renderVagas()"><option value="">Todas</option><option>Moema</option><option>Tatuapé</option><option>Perdizes</option><option>Tomahawk</option><option>Produção</option></select></label>
+        <label>Status<select id="fv-status" onchange="renderVagas()"><option value="">Todos</option><option>Aberta</option><option>Pausada</option><option>Fechada</option></select></label>
       </div>
       <div class="card">
         <div class="tbl-wrap">
           <table>
-            <thead><tr>
-              <th>Unidade</th><th>Função</th><th>Qtd vagas</th><th>Preenchidas</th><th>Em aberto</th><th>Status</th><th>Prioridade</th><th>Obs</th><th>Ação</th>
-            </tr></thead>
+            <thead><tr><th>Unidade</th><th>Função</th><th>Qtd</th><th>Preench.</th><th>Em aberto</th><th>Status</th><th>Prioridade</th><th>Obs</th><th style="width:130px">Ações</th></tr></thead>
             <tbody id="vagas-body"></tbody>
           </table>
         </div>
       </div>
-      <div style="margin-top:12px;font-size:12px;color:#64748B" id="vagas-summary"></div>
+      <div style="margin-top:8px;font-size:12px;color:#64748B" id="vagas-summary"></div>
     </div>
 
-    <!-- ======= EM TESTE ======= -->
+    <!-- EM TESTE -->
     <div id="tab-emteste" style="display:none">
       <div class="filter-row no-print">
-        <label>Unidade<select id="ft-unidade" onchange="renderTeste()">
-          <option value="">Todas</option>
-          <option>Moema</option><option>Tatuapé</option><option>Perdizes</option><option>Tomahawk</option><option>Produção</option>
-        </select></label>
-        <label>Status<select id="ft-status" onchange="renderTeste()">
-          <option value="">Todos</option>
-          <option>Em teste</option><option>Aprovado</option><option>Desistiu</option><option>Reprovado</option>
-        </select></label>
+        <label>Unidade<select id="ft-unidade" onchange="renderTeste()"><option value="">Todas</option><option>Moema</option><option>Tatuapé</option><option>Perdizes</option><option>Tomahawk</option><option>Produção</option></select></label>
+        <label>Status<select id="ft-status" onchange="renderTeste()"><option value="">Todos</option><option>Em teste</option><option>Aprovado</option><option>Desistiu</option><option>Reprovado</option></select></label>
       </div>
       <div class="card">
         <div class="tbl-wrap">
           <table>
-            <thead><tr>
-              <th>Início</th><th>Nome</th><th>Unidade</th><th>Função</th><th>Dias</th><th>Status</th><th>Tel</th><th>Obs</th><th>Atualizar</th><th>Por</th>
-            </tr></thead>
+            <thead><tr><th>Início</th><th>Nome</th><th>Unidade</th><th>Função</th><th>Dias</th><th>Status</th><th>Tel</th><th>Obs</th><th>Atualizar status</th><th style="width:80px">Ações</th></tr></thead>
             <tbody id="teste-body"></tbody>
           </table>
         </div>
       </div>
     </div>
 
-    <!-- ======= ENTREVISTAS ======= -->
+    <!-- ENTREVISTAS -->
     <div id="tab-entrevistas" style="display:none">
       <div class="filter-row no-print">
-        <label>Unidade<select id="fl-unidade" onchange="renderLog()">
-          <option value="">Todas</option>
-          <option>Moema</option><option>Tatuapé</option><option>Perdizes</option><option>Tomahawk</option><option>Produção</option>
-        </select></label>
-        <label>Resultado<select id="fl-result" onchange="renderLog()">
-          <option value="">Todos</option>
-          <option>Chamado p/ teste</option><option>Não aceitou</option><option>Não aprovamos</option><option>Pendente</option>
-        </select></label>
+        <label>Unidade<select id="fl-unidade" onchange="renderLog()"><option value="">Todas</option><option>Moema</option><option>Tatuapé</option><option>Perdizes</option><option>Tomahawk</option><option>Produção</option></select></label>
+        <label>Resultado<select id="fl-result" onchange="renderLog()"><option value="">Todos</option><option>Chamado p/ teste</option><option>Não aceitou</option><option>Não aprovamos</option><option>Pendente</option></select></label>
         <label>Data ini<input type="date" id="fl-dtini" onchange="renderLog()"></label>
         <label>Data fim<input type="date" id="fl-dtfim" onchange="renderLog()"></label>
       </div>
       <div class="card">
         <div class="tbl-wrap">
           <table>
-            <thead><tr>
-              <th>Data</th><th>Hora</th><th>Nome</th><th>Tel</th><th>Unidade</th><th>Função</th><th>Resultado</th><th>Motivo</th><th>Por</th>
-            </tr></thead>
+            <thead><tr><th>Data</th><th>Hora</th><th>Nome</th><th>Tel</th><th>Unidade</th><th>Função</th><th>Resultado</th><th>Motivo</th><th>Por</th><th style="width:80px">Ações</th></tr></thead>
             <tbody id="log-body"></tbody>
           </table>
         </div>
       </div>
     </div>
 
-    <!-- ======= + ENTREVISTA ======= -->
+    <!-- + ENTREVISTA -->
     <div id="tab-add-entrevista" style="display:none">
       <div class="card" style="max-width:640px">
         <div class="card-title">Registrar entrevista</div>
@@ -312,30 +263,16 @@ tr:hover td{background:#FAFAFA}
           <div class="fg"><label>Horário</label><input type="time" id="f-hora"></div>
           <div class="fg"><label>Nome completo</label><input type="text" id="f-nome" placeholder="Nome do candidato"></div>
           <div class="fg"><label>Telefone</label><input type="tel" id="f-tel" placeholder="(11) 9xxxx-xxxx"></div>
-          <div class="fg"><label>Unidade</label>
-            <select id="f-unidade">
-              <option value="">Selecionar...</option>
-              <option>Moema</option><option>Tatuapé</option><option>Perdizes</option><option>Tomahawk</option><option>Produção</option>
-            </select>
-          </div>
+          <div class="fg"><label>Unidade</label><select id="f-unidade"><option value="">Selecionar...</option><option>Moema</option><option>Tatuapé</option><option>Perdizes</option><option>Tomahawk</option><option>Produção</option></select></div>
           <div class="fg"><label>Função</label><input type="text" id="f-funcao" placeholder="Ex: Cumim, Cozinheiro..."></div>
-          <div class="fg"><label>Resultado</label>
-            <select id="f-resultado">
-              <option>Pendente</option>
-              <option>Chamado p/ teste</option>
-              <option>Não aceitou</option>
-              <option>Não aprovamos</option>
-            </select>
-          </div>
+          <div class="fg"><label>Resultado</label><select id="f-resultado"><option>Pendente</option><option>Chamado p/ teste</option><option>Não aceitou</option><option>Não aprovamos</option></select></div>
         </div>
-        <div class="fg" style="margin-bottom:14px"><label>Motivo (se não seguiu)</label>
-          <textarea id="f-motivo" placeholder="Ex: salário abaixo do esperado / sem experiência..."></textarea>
-        </div>
+        <div class="fg" style="margin-bottom:14px"><label>Motivo (se não seguiu)</label><textarea id="f-motivo" placeholder="Ex: salário abaixo do esperado..."></textarea></div>
         <button class="btn btn-blue" onclick="addEntrevista()">Salvar entrevista →</button>
       </div>
     </div>
 
-    <!-- ======= + TESTE ======= -->
+    <!-- + TESTE -->
     <div id="tab-add-teste" style="display:none">
       <div class="card" style="max-width:640px">
         <div class="card-title">Iniciar período de teste (5 dias)</div>
@@ -344,72 +281,46 @@ tr:hover td{background:#FAFAFA}
           <div class="fg"><label>Data início</label><input type="date" id="t-data"></div>
           <div class="fg"><label>Nome completo</label><input type="text" id="t-nome" placeholder="Nome do candidato"></div>
           <div class="fg"><label>Telefone</label><input type="tel" id="t-tel" placeholder="(11) 9xxxx-xxxx"></div>
-          <div class="fg"><label>Unidade</label>
-            <select id="t-unidade">
-              <option value="">Selecionar...</option>
-              <option>Moema</option><option>Tatuapé</option><option>Perdizes</option><option>Tomahawk</option><option>Produção</option>
-            </select>
-          </div>
+          <div class="fg"><label>Unidade</label><select id="t-unidade"><option value="">Selecionar...</option><option>Moema</option><option>Tatuapé</option><option>Perdizes</option><option>Tomahawk</option><option>Produção</option></select></div>
           <div class="fg"><label>Função</label><input type="text" id="t-funcao" placeholder="Ex: Cumim, Cozinheiro..."></div>
+          <div class="fg"><label>Dias concluídos</label><input type="number" id="t-dias" min="0" max="5" value="1"></div>
         </div>
-        <div class="fg" style="margin-bottom:14px"><label>Observação inicial</label>
-          <textarea id="t-obs" placeholder="Anotações sobre o candidato..."></textarea>
-        </div>
+        <div class="fg" style="margin-bottom:14px"><label>Observação inicial</label><textarea id="t-obs" placeholder="Anotações sobre o candidato..."></textarea></div>
         <button class="btn btn-green" onclick="addTeste()">Iniciar período de teste →</button>
       </div>
     </div>
 
-    <!-- ======= + VAGA ======= -->
+    <!-- + VAGA -->
     <div id="tab-add-vaga" style="display:none">
       <div class="card" style="max-width:640px">
         <div class="card-title">Abrir nova vaga</div>
         <div class="form-grid">
-          <div class="fg"><label>Unidade</label>
-            <select id="v-unidade">
-              <option value="">Selecionar...</option>
-              <option>Moema</option><option>Tatuapé</option><option>Perdizes</option><option>Tomahawk</option><option>Produção</option>
-            </select>
-          </div>
+          <div class="fg"><label>Unidade</label><select id="v-unidade"><option value="">Selecionar...</option><option>Moema</option><option>Tatuapé</option><option>Perdizes</option><option>Tomahawk</option><option>Produção</option></select></div>
           <div class="fg"><label>Função</label><input type="text" id="v-funcao" placeholder="Ex: Cumim, Cozinheiro..."></div>
           <div class="fg"><label>Qtd de vagas</label><input type="number" id="v-qtd" min="1" value="1"></div>
-          <div class="fg"><label>Prioridade</label>
-            <select id="v-prioridade">
-              <option>Normal</option>
-              <option>Alta</option>
-              <option>Urgente</option>
-            </select>
-          </div>
+          <div class="fg"><label>Prioridade</label><select id="v-prioridade"><option>Normal</option><option>Alta</option><option>Urgente</option></select></div>
           <div class="fg"><label>Data abertura</label><input type="date" id="v-data"></div>
         </div>
-        <div class="fg" style="margin-bottom:14px"><label>Observação</label>
-          <textarea id="v-obs" placeholder="Requisitos, turno, salário, etc..."></textarea>
-        </div>
+        <div class="fg" style="margin-bottom:14px"><label>Observação</label><textarea id="v-obs" placeholder="Requisitos, turno, salário, etc..."></textarea></div>
         <button class="btn btn-blue" onclick="addVaga()">Abrir vaga →</button>
       </div>
     </div>
 
-  </div><!-- /main -->
-</div><!-- /app -->
+  </div>
+</div>
 
 <script>
 // ===== FIREBASE CONFIG =====
-// INSTRUÇÕES: Substitua os valores abaixo com os do seu projeto Firebase
-// 1. Acesse https://console.firebase.google.com
-// 2. Crie projeto "hannover-rh"
-// 3. Clique em "Adicionar app" > Web
-// 4. Copie as credenciais e cole aqui
 const FB_CONFIG = {
-  apiKey: "AIzaSyDVmuHvsagn7E9P_7OiFyacSemfTh4qGX0",
-  authDomain: "hannover-rh.firebaseapp.com",
-  databaseURL: "https://hannover-rh-default-rtdb.firebaseio.com",
-  projectId: "hannover-rh",
-  storageBucket: "hannover-rh.firebasestorage.app",
-  messagingSenderId: "765986578237",
-  appId: "1:765986578237:web:cf715f01b8de906519ef54",
-  measurementId: "G-NQ01DMCQTX"
+  apiKey: "COLE_AQUI_SUA_API_KEY",
+  authDomain: "COLE_AQUI.firebaseapp.com",
+  databaseURL: "https://COLE_AQUI-default-rtdb.firebaseio.com",
+  projectId: "COLE_AQUI",
+  storageBucket: "COLE_AQUI.appspot.com",
+  messagingSenderId: "COLE_AQUI",
+  appId: "COLE_AQUI"
 };
 
-// ===== VAGAS INICIAIS (mantidas conforme solicitado) =====
 const VAGAS_INICIAIS = [
   {id:'v1',unidade:'Moema',funcao:'Lider de Cozinha',qtd:1,preenchidas:0,status:'Aberta',prioridade:'Urgente',obs:'',data:'2025-05-21'},
   {id:'v2',unidade:'Moema',funcao:'Cozinheiro',qtd:1,preenchidas:0,status:'Aberta',prioridade:'Alta',obs:'',data:'2025-05-21'},
@@ -443,15 +354,24 @@ const VAGAS_INICIAIS = [
   {id:'v30',unidade:'Produção',funcao:'Cozinheiro',qtd:2,preenchidas:0,status:'Aberta',prioridade:'Normal',obs:'',data:'2025-05-21'},
 ];
 
-const UNITS_COLOR = {Moema:'#2563EB',Tatuapé:'#059669',Perdizes:'#D97706',Tomahawk:'#DC2626',Produção:'#7C3AED'};
+const UNITS_COLOR={Moema:'#2563EB',Tatuapé:'#059669',Perdizes:'#D97706',Tomahawk:'#DC2626',Produção:'#7C3AED'};
+const UNIT_OPTS='<option value="">Selecionar...</option><option>Moema</option><option>Tatuapé</option><option>Perdizes</option><option>Tomahawk</option><option>Produção</option>';
+const RESULT_OPTS='<option>Pendente</option><option>Chamado p/ teste</option><option>Não aceitou</option><option>Não aprovamos</option>';
+const STATUS_TESTE='<option>Em teste</option><option>Aprovado</option><option>Desistiu</option><option>Reprovado</option>';
+const PRIOR_OPTS='<option>Normal</option><option>Alta</option><option>Urgente</option>';
+const VAGA_STATUS='<option>Aberta</option><option>Pausada</option><option>Fechada</option>';
 
 let db, userName='', currentTab='dashboard';
-let gEntrev=[], gTestes=[], gVagas=[], gNextId=1;
+let gEntrev=[], gTestes=[], gVagas=[];
+let confirmCallback=null;
 
-function today(){return new Date().toISOString().slice(0,10)}
-function nowTime(){return new Date().toTimeString().slice(0,5)}
-function fmtDate(d){return d?d.split('-').reverse().join('/'):'—'}
+const today=()=>new Date().toISOString().slice(0,10);
+const nowTime=()=>new Date().toTimeString().slice(0,5);
+const fmtDate=d=>d?d.split('-').reverse().join('/'):'—';
+const sel=(id,val)=>{const el=document.getElementById(id);if(el&&val!=null)el.value=val};
+const val=id=>{const el=document.getElementById(id);return el?el.value:''};
 
+// ===== LOGIN =====
 function doLogin(){
   const n=document.getElementById('login-name').value.trim();
   if(!n){alert('Digite seu nome para continuar.');return}
@@ -463,62 +383,48 @@ function doLogin(){
 }
 document.getElementById('login-name').addEventListener('keydown',e=>{if(e.key==='Enter')doLogin()});
 
+// ===== FIREBASE =====
 function initFirebase(){
-  // Verifica se config foi preenchida
   if(FB_CONFIG.apiKey==='COLE_AQUI_SUA_API_KEY'){
-    // Modo offline/demo sem Firebase
     gVagas=[...VAGAS_INICIAIS];
-    gNextId=100;
     document.getElementById('sync-label').textContent='⚠ modo local (configure Firebase)';
     document.getElementById('sync-label').style.color='#F59E0B';
-    setDefaults();renderAll();
-    return;
+    setDefaults();renderAll();return;
   }
   try{
     firebase.initializeApp(FB_CONFIG);
     db=firebase.database();
-    // Inicializa vagas se vazio
     db.ref('vagas').once('value',snap=>{
-      if(!snap.exists()){
-        const vagasObj={};
-        VAGAS_INICIAIS.forEach(v=>{vagasObj[v.id]=v});
-        db.ref('vagas').set(vagasObj);
-      }
+      if(!snap.exists()){const o={};VAGAS_INICIAIS.forEach(v=>{o[v.id]=v});db.ref('vagas').set(o)}
     });
-    // Listeners tempo real
     db.ref('entrevistas').on('value',snap=>{
       gEntrev=[];
-      if(snap.exists()){snap.forEach(c=>{gEntrev.push(c.val())})}
+      if(snap.exists())snap.forEach(c=>gEntrev.push(c.val()));
       gEntrev.sort((a,b)=>((b.data||'')+(b.hora||'')).localeCompare((a.data||'')+(a.hora||'')));
       if(currentTab==='entrevistas')renderLog();
       if(currentTab==='dashboard')renderDashboard();
     });
     db.ref('testes').on('value',snap=>{
       gTestes=[];
-      if(snap.exists()){snap.forEach(c=>{gTestes.push(c.val())})}
+      if(snap.exists())snap.forEach(c=>gTestes.push(c.val()));
       gTestes.sort((a,b)=>(b.data||'').localeCompare(a.data||''));
       if(currentTab==='emteste')renderTeste();
       if(currentTab==='dashboard')renderDashboard();
     });
     db.ref('vagas').on('value',snap=>{
       gVagas=[];
-      if(snap.exists()){snap.forEach(c=>{gVagas.push(c.val())})}
+      if(snap.exists())snap.forEach(c=>gVagas.push(c.val()));
       if(currentTab==='vagas')renderVagas();
       if(currentTab==='dashboard')renderDashboard();
-    });
-    db.ref('meta/nextId').on('value',snap=>{
-      if(snap.exists())gNextId=snap.val();else gNextId=1;
     });
     setSyncOk();
   }catch(e){
     console.error(e);
     document.getElementById('sync-label').textContent='⚠ erro Firebase';
     document.getElementById('sync-label').style.color='#EF4444';
-    gVagas=[...VAGAS_INICIAIS];
-    renderAll();
+    gVagas=[...VAGAS_INICIAIS];renderAll();
   }
-  setDefaults();
-  renderAll();
+  setDefaults();renderAll();
 }
 
 function setSyncOk(){
@@ -527,19 +433,23 @@ function setSyncOk(){
   setTimeout(()=>{el.textContent='↺ ao vivo';el.className='sync-dot';el.style.color='#64748B'},2000);
 }
 
+function fbSet(path,val){if(db){db.ref(path).set(val);setSyncOk()}}
+function fbUpdate(path,val){if(db){db.ref(path).update(val);setSyncOk()}}
+function fbDelete(path){if(db){db.ref(path).remove();setSyncOk()}}
+
 function setDefaults(){
-  document.getElementById('f-data').value=today();
-  document.getElementById('f-hora').value=nowTime();
-  document.getElementById('t-data').value=today();
-  document.getElementById('v-data').value=today();
+  sel('f-data',today());sel('f-hora',nowTime());
+  sel('t-data',today());sel('v-data',today());
 }
 
-function goTab(t){
+// ===== NAV =====
+function goTab(t,fromEvent){
   currentTab=t;
+  const e=fromEvent||window.event;
   document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
-  event.target.classList.add('active');
+  if(e&&e.target)e.target.classList.add('active');
   ['dashboard','vagas','emteste','entrevistas','add-entrevista','add-teste','add-vaga'].forEach(id=>{
-    document.getElementById('tab-'+id).style.display= id===t?'block':'none';
+    document.getElementById('tab-'+id).style.display=id===t?'block':'none';
   });
   if(t==='dashboard')renderDashboard();
   if(t==='vagas')renderVagas();
@@ -547,237 +457,285 @@ function goTab(t){
   if(t==='entrevistas')renderLog();
 }
 
-// ======= DASHBOARD =======
-function clearDashFilter(){
-  document.getElementById('dash-dt-ini').value='';
-  document.getElementById('dash-dt-fim').value='';
-  renderDashboard();
-}
-
-function getDateFilter(){
-  return{ini:document.getElementById('dash-dt-ini').value,fim:document.getElementById('dash-dt-fim').value};
-}
-
-function inRange(date,ini,fim){
-  if(!ini&&!fim)return true;
-  if(ini&&date<ini)return false;
-  if(fim&&date>fim)return false;
-  return true;
-}
+// ===== DASHBOARD =====
+function clearDashFilter(){sel('dash-dt-ini','');sel('dash-dt-fim','');renderDashboard()}
+function inRange(d,ini,fim){if(!ini&&!fim)return true;if(ini&&d<ini)return false;if(fim&&d>fim)return false;return true}
 
 function renderDashboard(){
-  const{ini,fim}=getDateFilter();
+  const ini=val('dash-dt-ini'),fim=val('dash-dt-fim');
   const entrev=gEntrev.filter(e=>inRange(e.data||'',ini,fim));
   const testes=gTestes.filter(t=>inRange(t.data||'',ini,fim));
-
   const emTeste=testes.filter(t=>t.status==='Em teste').length;
   const aprovados=testes.filter(t=>t.status==='Aprovado').length;
   const saiu=testes.filter(t=>t.status==='Desistiu'||t.status==='Reprovado').length;
-  const totalEntrev=entrev.length;
-  const totalTestes=testes.length;
-  const taxaAprov=totalTestes>0?Math.round(aprovados/totalTestes*100):0;
-  const vagasAbertas=gVagas.filter(v=>v.status==='Aberta').reduce((a,v)=>a+(v.qtd-v.preenchidas),0);
-
-  const filterLabel=ini||fim?` (${ini?fmtDate(ini):'início'}–${fim?fmtDate(fim):'hoje'})`:'';
-  document.getElementById('print-header-text').textContent=`Hannover RH · Gestão à Vista${filterLabel} · Impresso em ${new Date().toLocaleString('pt-BR')}`;
-
+  const vagasAbertas=gVagas.filter(v=>v.status==='Aberta').reduce((a,v)=>a+(v.qtd-(v.preenchidas||0)),0);
+  const taxa=testes.length>0?Math.round(aprovados/testes.length*100):0;
+  const lbl=ini||fim?` (${ini?fmtDate(ini):'início'}–${fim?fmtDate(fim):'hoje'})`:'';
+  document.getElementById('print-header-text').textContent=`Hannover RH · Gestão à Vista${lbl} · ${new Date().toLocaleString('pt-BR')}`;
   document.getElementById('kpi-grid').innerHTML=`
     <div class="kpi kpi-blue"><div class="kpi-lbl">Vagas em aberto</div><div class="kpi-val">${vagasAbertas}</div><div class="kpi-sub">posições a preencher</div></div>
-    <div class="kpi kpi-default"><div class="kpi-lbl">Entrevistas${filterLabel}</div><div class="kpi-val">${totalEntrev}</div><div class="kpi-sub">realizadas no período</div></div>
-    <div class="kpi kpi-default"><div class="kpi-lbl">Iniciaram teste</div><div class="kpi-val">${totalTestes}</div><div class="kpi-sub">período de 5 dias</div></div>
+    <div class="kpi kpi-default"><div class="kpi-lbl">Entrevistas${lbl}</div><div class="kpi-val">${entrev.length}</div><div class="kpi-sub">realizadas no período</div></div>
+    <div class="kpi kpi-default"><div class="kpi-lbl">Iniciaram teste</div><div class="kpi-val">${testes.length}</div><div class="kpi-sub">período de 5 dias</div></div>
     <div class="kpi kpi-yellow"><div class="kpi-lbl">Em teste agora</div><div class="kpi-val">${emTeste}</div><div class="kpi-sub">aguardando conclusão</div></div>
-    <div class="kpi kpi-green"><div class="kpi-lbl">Aprovados e registrados</div><div class="kpi-val">${aprovados}</div><div class="kpi-sub">${taxaAprov}% de aprovação</div></div>
-    <div class="kpi kpi-red"><div class="kpi-lbl">Desistências / reprovados</div><div class="kpi-val">${saiu}</div><div class="kpi-sub">saíram do teste</div></div>
-  `;
-
+    <div class="kpi kpi-green"><div class="kpi-lbl">Aprovados</div><div class="kpi-val">${aprovados}</div><div class="kpi-sub">${taxa}% de aprovação</div></div>
+    <div class="kpi kpi-red"><div class="kpi-lbl">Desistências/reprovados</div><div class="kpi-val">${saiu}</div><div class="kpi-sub">saíram do teste</div></div>`;
   document.getElementById('funil').innerHTML=`
-    <div class="funil-step"><div class="funil-val" style="color:#6B7280">${totalEntrev}</div><div class="funil-lbl">Entrevistas</div></div>
+    <div class="funil-step"><div class="funil-val" style="color:#6B7280">${entrev.length}</div><div class="funil-lbl">Entrevistas</div></div>
     <div class="funil-arr">›</div>
-    <div class="funil-step"><div class="funil-val" style="color:#D97706">${totalTestes}</div><div class="funil-lbl">Iniciaram teste</div></div>
+    <div class="funil-step"><div class="funil-val" style="color:#D97706">${testes.length}</div><div class="funil-lbl">Iniciaram teste</div></div>
     <div class="funil-arr">›</div>
     <div class="funil-step"><div class="funil-val" style="color:#2563EB">${emTeste}</div><div class="funil-lbl">Em andamento</div></div>
     <div class="funil-arr">›</div>
-    <div class="funil-step"><div class="funil-val" style="color:#059669">${aprovados}</div><div class="funil-lbl">Aprovados</div></div>
-  `;
-
-  const unitNames=['Moema','Tatuapé','Perdizes','Tomahawk','Produção'];
-  document.getElementById('unit-grid').innerHTML=unitNames.map(u=>{
+    <div class="funil-step"><div class="funil-val" style="color:#059669">${aprovados}</div><div class="funil-lbl">Aprovados</div></div>`;
+  document.getElementById('unit-grid').innerHTML=['Moema','Tatuapé','Perdizes','Tomahawk','Produção'].map(u=>{
     const ut=testes.filter(t=>t.unidade===u);
-    const ue=entrev.filter(e=>e.unidade===u).length;
-    const uv=gVagas.filter(v=>v.unidade===u&&v.status==='Aberta').reduce((a,v)=>a+(v.qtd-v.preenchidas),0);
+    const uv=gVagas.filter(v=>v.unidade===u&&v.status==='Aberta').reduce((a,v)=>a+(v.qtd-(v.preenchidas||0)),0);
     return`<div class="unit-card" style="border-top:3px solid ${UNITS_COLOR[u]||'#94A3B8'}">
       <div class="unit-top"><span class="unit-name">${u}</span><span class="unit-badge">${uv} vagas</span></div>
       <div class="unit-metrics">
-        <div><div class="um-val" style="color:#374151">${ue}</div><div class="um-lbl">entrevistas</div></div>
+        <div><div class="um-val" style="color:#374151">${entrev.filter(e=>e.unidade===u).length}</div><div class="um-lbl">entrevistas</div></div>
         <div><div class="um-val" style="color:#D97706">${ut.filter(t=>t.status==='Em teste').length}</div><div class="um-lbl">em teste</div></div>
         <div><div class="um-val" style="color:#059669">${ut.filter(t=>t.status==='Aprovado').length}</div><div class="um-lbl">aprovados</div></div>
         <div><div class="um-val" style="color:#DC2626">${ut.filter(t=>t.status==='Desistiu'||t.status==='Reprovado').length}</div><div class="um-lbl">saíram</div></div>
-      </div>
-    </div>`;
+      </div></div>`;
   }).join('');
-
-  const upd=gTestes.length>0||gEntrev.length>0?`Dados ao vivo · ${new Date().toLocaleString('pt-BR')}`:'';
-  document.getElementById('dash-updated').textContent=upd;
 }
 
-function printDash(){
-  window.print();
+// ===== CONFIRM MODAL =====
+function openConfirm(msg,cb){
+  document.getElementById('confirm-sub').textContent=msg;
+  confirmCallback=cb;
+  document.getElementById('confirm-overlay').classList.add('open');
+  document.getElementById('confirm-ok-btn').onclick=()=>{closeConfirm();cb()};
 }
+function closeConfirm(){document.getElementById('confirm-overlay').classList.remove('open')}
 
-// ======= VAGAS =======
+// ===== EDIT MODAL =====
+function openModal(title,bodyHtml,saveFn){
+  document.getElementById('modal-title-text').textContent=title;
+  document.getElementById('modal-body').innerHTML=bodyHtml;
+  document.getElementById('modal-save-btn').onclick=saveFn;
+  document.getElementById('modal-overlay').classList.add('open');
+}
+function closeModal(){document.getElementById('modal-overlay').classList.remove('open')}
+
+// ===== VAGAS =====
 function renderVagas(){
-  const fu=document.getElementById('fv-unidade').value;
-  const fs=document.getElementById('fv-status').value;
+  const fu=val('fv-unidade'),fs=val('fv-status');
   const data=gVagas.filter(v=>(!fu||v.unidade===fu)&&(!fs||v.status===fs));
   const bv={Aberta:'b-aberta',Fechada:'b-fechada',Pausada:'b-pausada'};
   const prior={Urgente:'🔴',Alta:'🟡',Normal:'🟢'};
   const tbody=document.getElementById('vagas-body');
-  if(!data.length){tbody.innerHTML=`<tr><td colspan="9" class="empty">Nenhuma vaga encontrada.</td></tr>`;return}
+  if(!data.length){tbody.innerHTML='<tr><td colspan="9" class="empty">Nenhuma vaga encontrada.</td></tr>';return}
   tbody.innerHTML=data.map(v=>`<tr>
-    <td><strong>${v.unidade}</strong></td>
-    <td>${v.funcao}</td>
+    <td><strong>${v.unidade}</strong></td><td>${v.funcao}</td>
     <td style="text-align:center;font-weight:700">${v.qtd}</td>
     <td style="text-align:center">${v.preenchidas||0}</td>
     <td style="text-align:center;font-weight:700;color:${(v.qtd-(v.preenchidas||0))>0?'#B91C1C':'#059669'}">${v.qtd-(v.preenchidas||0)}</td>
     <td><span class="badge ${bv[v.status]||'b-pendente'}">${v.status}</span></td>
     <td>${prior[v.prioridade]||''} ${v.prioridade}</td>
-    <td style="font-size:11px;color:#6B7280;max-width:140px">${v.obs||'—'}</td>
-    <td>
-      <select class="act-sel" onchange="updateVaga('${v.id}',this.value);this.value=''">
-        <option value="">Ação...</option>
+    <td style="font-size:11px;color:#6B7280;max-width:120px">${v.obs||'—'}</td>
+    <td style="white-space:nowrap">
+      <select class="act-sel" onchange="updateVagaStatus('${v.id}',this.value);this.value=''">
+        <option value="">Ação rápida...</option>
         <option value="preencher">+1 preenchida</option>
         <option value="Fechada">Fechar vaga</option>
         <option value="Pausada">Pausar</option>
         <option value="Aberta">Reabrir</option>
       </select>
-    </td>
-  </tr>`).join('');
-
-  const totalAbertas=gVagas.filter(v=>v.status==='Aberta').reduce((a,v)=>a+(v.qtd-(v.preenchidas||0)),0);
-  const totalFechadas=gVagas.filter(v=>v.status==='Fechada').length;
-  document.getElementById('vagas-summary').textContent=`Total em aberto: ${totalAbertas} posições · Vagas fechadas: ${totalFechadas}`;
+      <button class="icon-btn" onclick="editVaga('${v.id}')" title="Editar">✏️</button>
+      <button class="icon-btn del" onclick="deleteVaga('${v.id}','${v.funcao} – ${v.unidade}')" title="Excluir">🗑️</button>
+    </td></tr>`).join('');
+  const tot=gVagas.filter(v=>v.status==='Aberta').reduce((a,v)=>a+(v.qtd-(v.preenchidas||0)),0);
+  document.getElementById('vagas-summary').textContent=`Total em aberto: ${tot} posições · Fechadas: ${gVagas.filter(v=>v.status==='Fechada').length}`;
 }
 
-function updateVaga(id,action){
+function updateVagaStatus(id,action){
   if(!action)return;
-  const v=gVagas.find(x=>x.id===id);
-  if(!v)return;
+  const v=gVagas.find(x=>x.id===id);if(!v)return;
   if(action==='preencher'){
-    if(v.preenchidas>=v.qtd){alert('Todas as vagas desta função já estão preenchidas.');return}
+    if((v.preenchidas||0)>=v.qtd){alert('Todas as vagas já estão preenchidas.');return}
     v.preenchidas=(v.preenchidas||0)+1;
     if(v.preenchidas>=v.qtd)v.status='Fechada';
   }else{v.status=action}
-  if(db){db.ref('vagas/'+id).set(v);setSyncOk()}
-  else renderVagas();
+  fbSet('vagas/'+id,v);renderVagas();renderDashboard();
+}
+
+function editVaga(id){
+  const v=gVagas.find(x=>x.id===id);if(!v)return;
+  openModal('Editar vaga',`
+    <div class="form-grid">
+      <div class="fg"><label>Unidade</label><select id="ev-unidade">${UNIT_OPTS}</select></div>
+      <div class="fg"><label>Função</label><input type="text" id="ev-funcao" value="${v.funcao}"></div>
+      <div class="fg"><label>Qtd total de vagas</label><input type="number" id="ev-qtd" min="1" value="${v.qtd}"></div>
+      <div class="fg"><label>Já preenchidas</label><input type="number" id="ev-preench" min="0" value="${v.preenchidas||0}"></div>
+      <div class="fg"><label>Status</label><select id="ev-status">${VAGA_STATUS}</select></div>
+      <div class="fg"><label>Prioridade</label><select id="ev-prior">${PRIOR_OPTS}</select></div>
+    </div>
+    <div class="fg"><label>Observação</label><textarea id="ev-obs">${v.obs||''}</textarea></div>`,
+  ()=>{
+    v.unidade=val('ev-unidade');v.funcao=val('ev-funcao').trim();
+    v.qtd=parseInt(val('ev-qtd'))||1;v.preenchidas=parseInt(val('ev-preench'))||0;
+    v.status=val('ev-status');v.prioridade=val('ev-prior');v.obs=val('ev-obs').trim();
+    fbSet('vagas/'+id,v);closeModal();renderVagas();renderDashboard();
+  });
+  sel('ev-unidade',v.unidade);sel('ev-status',v.status);sel('ev-prior',v.prioridade);
+}
+
+function deleteVaga(id,nome){
+  openConfirm(`Excluir a vaga "${nome}"? Esta ação não pode ser desfeita.`,()=>{
+    gVagas=gVagas.filter(x=>x.id!==id);
+    fbDelete('vagas/'+id);renderVagas();renderDashboard();
+  });
 }
 
 function addVaga(){
-  const unidade=document.getElementById('v-unidade').value;
-  const funcao=document.getElementById('v-funcao').value.trim();
-  const qtd=parseInt(document.getElementById('v-qtd').value)||1;
+  const unidade=val('v-unidade'),funcao=val('v-funcao').trim();
   if(!unidade||!funcao){alert('Preencha unidade e função.');return}
   const id='v'+Date.now();
-  const nova={id,unidade,funcao,qtd,preenchidas:0,status:'Aberta',prioridade:document.getElementById('v-prioridade').value,data:document.getElementById('v-data').value,obs:document.getElementById('v-obs').value.trim()};
-  gVagas.push(nova);
-  if(db){db.ref('vagas/'+id).set(nova);setSyncOk()}
-  document.getElementById('v-unidade').value='';
-  document.getElementById('v-funcao').value='';
-  document.getElementById('v-qtd').value='1';
-  document.getElementById('v-obs').value='';
-  goTab('vagas');document.querySelectorAll('.nav-btn')[1].classList.add('active');
-  document.querySelectorAll('.nav-btn').forEach((b,i)=>{if(i!==1)b.classList.remove('active')});
+  const nova={id,unidade,funcao,qtd:parseInt(val('v-qtd'))||1,preenchidas:0,status:'Aberta',prioridade:val('v-prioridade'),data:val('v-data'),obs:val('v-obs').trim()};
+  gVagas.push(nova);fbSet('vagas/'+id,nova);
+  sel('v-unidade','');sel('v-funcao','');sel('v-qtd','1');sel('v-obs','');
+  document.querySelectorAll('.nav-btn').forEach((b,i)=>{b.classList.toggle('active',i===1)});
+  currentTab='vagas';['dashboard','vagas','emteste','entrevistas','add-entrevista','add-teste','add-vaga'].forEach(i=>document.getElementById('tab-'+i).style.display=i==='vagas'?'block':'none');
+  renderVagas();
 }
 
-// ======= EM TESTE =======
+// ===== EM TESTE =====
 function renderTeste(){
-  const fu=document.getElementById('ft-unidade').value;
-  const fs=document.getElementById('ft-status').value;
+  const fu=val('ft-unidade'),fs=val('ft-status');
   const data=gTestes.filter(t=>(!fu||t.unidade===fu)&&(!fs||t.status===fs));
+  const bmap={'Em teste':'b-teste',Aprovado:'b-aprovado',Desistiu:'b-desistiu',Reprovado:'b-reprovado'};
   const tbody=document.getElementById('teste-body');
-  if(!data.length){tbody.innerHTML=`<tr><td colspan="10" class="empty">Nenhum registro encontrado.</td></tr>`;return}
+  if(!data.length){tbody.innerHTML='<tr><td colspan="10" class="empty">Nenhum registro encontrado.</td></tr>';return}
   tbody.innerHTML=data.map(t=>{
     const dots=Array.from({length:5},(_,i)=>`<div class="dia-dot ${i<(t.diasOk||0)?'dia-ok':'dia-pend'}"></div>`).join('');
-    const bmap={};bmap['Em teste']='b-teste';bmap['Aprovado']='b-aprovado';bmap['Desistiu']='b-desistiu';bmap['Reprovado']='b-reprovado';
-    const rowBg=t.status==='Em teste'?'background:#FFFBEB':'';
-    return`<tr style="${rowBg}">
+    return`<tr style="${t.status==='Em teste'?'background:#FFFBEB':''}">
       <td>${fmtDate(t.data)}</td>
       <td><strong>${t.nome}</strong></td>
-      <td>${t.unidade}</td>
-      <td>${t.funcao}</td>
+      <td>${t.unidade}</td><td>${t.funcao}</td>
       <td><div class="dias-row">${dots}<span style="font-size:10px;color:#6B7280;margin-left:4px">Dia ${t.diasOk||0}/5</span></div></td>
       <td><span class="badge ${bmap[t.status]||'b-pendente'}">${t.status}</span></td>
       <td style="font-size:11px;color:#6B7280">${t.tel||'—'}</td>
-      <td style="font-size:11px;color:#6B7280;max-width:120px">${t.obs||'—'}</td>
-      <td>${t.status==='Em teste'?`
-        <select class="act-sel" onchange="updateTeste('${t.id}',this.value);this.value=''">
-          <option value="">Atualizar...</option>
-          <option>Aprovado</option><option>Desistiu</option><option>Reprovado</option>
-        </select>`:`<span style="font-size:11px;color:#9CA3AF">Concluído</span>`}
-      </td>
-      <td style="font-size:11px;color:#9CA3AF">${t.por||'—'}</td>
-    </tr>`;
+      <td style="font-size:11px;color:#6B7280;max-width:100px">${t.obs||'—'}</td>
+      <td>${t.status==='Em teste'?`<select class="act-sel" onchange="updateTesteStatus('${t.id}',this.value);this.value=''">
+        <option value="">Atualizar...</option><option>Aprovado</option><option>Desistiu</option><option>Reprovado</option>
+        </select>`:'<span style="font-size:11px;color:#9CA3AF">Concluído</span>'}</td>
+      <td style="white-space:nowrap">
+        <button class="icon-btn" onclick="editTeste('${t.id}')" title="Editar">✏️</button>
+        <button class="icon-btn del" onclick="deleteTeste('${t.id}','${t.nome}')" title="Excluir">🗑️</button>
+      </td></tr>`;
   }).join('');
 }
 
-function updateTeste(id,status){
+function updateTesteStatus(id,status){
   if(!status)return;
-  const t=gTestes.find(x=>x.id===id);
-  if(!t)return;
-  t.status=status;
-  if(db){db.ref('testes/'+id).update({status});setSyncOk()}
-  renderTeste();renderDashboard();
+  const t=gTestes.find(x=>x.id===id);if(!t)return;
+  t.status=status;fbUpdate('testes/'+id,{status});renderTeste();renderDashboard();
+}
+
+function editTeste(id){
+  const t=gTestes.find(x=>x.id===id);if(!t)return;
+  openModal('Editar período de teste',`
+    <div class="form-grid">
+      <div class="fg"><label>Data início</label><input type="date" id="et-data" value="${t.data||''}"></div>
+      <div class="fg"><label>Nome</label><input type="text" id="et-nome" value="${t.nome}"></div>
+      <div class="fg"><label>Telefone</label><input type="tel" id="et-tel" value="${t.tel||''}"></div>
+      <div class="fg"><label>Unidade</label><select id="et-unidade">${UNIT_OPTS}</select></div>
+      <div class="fg"><label>Função</label><input type="text" id="et-funcao" value="${t.funcao}"></div>
+      <div class="fg"><label>Dias concluídos (0–5)</label><input type="number" id="et-dias" min="0" max="5" value="${t.diasOk||0}"></div>
+      <div class="fg"><label>Status</label><select id="et-status">${STATUS_TESTE}</select></div>
+    </div>
+    <div class="fg"><label>Observação</label><textarea id="et-obs">${t.obs||''}</textarea></div>`,
+  ()=>{
+    t.data=val('et-data');t.nome=val('et-nome').trim();t.tel=val('et-tel').trim();
+    t.unidade=val('et-unidade');t.funcao=val('et-funcao').trim();
+    t.diasOk=Math.min(5,Math.max(0,parseInt(val('et-dias'))||0));
+    t.status=val('et-status');t.obs=val('et-obs').trim();
+    fbSet('testes/'+t.id,t);closeModal();renderTeste();renderDashboard();
+  });
+  sel('et-unidade',t.unidade);sel('et-status',t.status);
+}
+
+function deleteTeste(id,nome){
+  openConfirm(`Excluir o registro de "${nome}" do período de teste?`,()=>{
+    gTestes=gTestes.filter(x=>x.id!==id);
+    fbDelete('testes/'+id);renderTeste();renderDashboard();
+  });
 }
 
 function addTeste(){
-  const nome=document.getElementById('t-nome').value.trim();
-  const unidade=document.getElementById('t-unidade').value;
-  const funcao=document.getElementById('t-funcao').value.trim();
+  const nome=val('t-nome').trim(),unidade=val('t-unidade'),funcao=val('t-funcao').trim();
   if(!nome||!unidade||!funcao){alert('Preencha nome, unidade e função.');return}
   const id='t'+Date.now();
-  const novo={id,data:document.getElementById('t-data').value,nome,tel:document.getElementById('t-tel').value.trim(),unidade,funcao,diasOk:1,status:'Em teste',obs:document.getElementById('t-obs').value.trim(),por:userName};
-  gTestes.unshift(novo);
-  if(db){db.ref('testes/'+id).set(novo);setSyncOk()}
-  document.getElementById('t-nome').value='';document.getElementById('t-tel').value='';
-  document.getElementById('t-funcao').value='';document.getElementById('t-obs').value='';
-  goTab('emteste');document.querySelectorAll('.nav-btn')[2].classList.add('active');
-  document.querySelectorAll('.nav-btn').forEach((b,i)=>{if(i!==2)b.classList.remove('active')});
+  const novo={id,data:val('t-data'),nome,tel:val('t-tel').trim(),unidade,funcao,diasOk:parseInt(val('t-dias'))||1,status:'Em teste',obs:val('t-obs').trim(),por:userName};
+  gTestes.unshift(novo);fbSet('testes/'+id,novo);
+  ['t-nome','t-tel','t-funcao','t-obs'].forEach(i=>sel(i,''));sel('t-dias','1');
+  document.querySelectorAll('.nav-btn').forEach((b,i)=>b.classList.toggle('active',i===2));
+  currentTab='emteste';['dashboard','vagas','emteste','entrevistas','add-entrevista','add-teste','add-vaga'].forEach(i=>document.getElementById('tab-'+i).style.display=i==='emteste'?'block':'none');
+  renderTeste();
 }
 
-// ======= ENTREVISTAS =======
+// ===== ENTREVISTAS =====
 function renderLog(){
-  const fu=document.getElementById('fl-unidade').value;
-  const fr=document.getElementById('fl-result').value;
-  const di=document.getElementById('fl-dtini').value;
-  const df=document.getElementById('fl-dtfim').value;
+  const fu=val('fl-unidade'),fr=val('fl-result'),di=val('fl-dtini'),df=val('fl-dtfim');
   const data=gEntrev.filter(e=>(!fu||e.unidade===fu)&&(!fr||e.resultado===fr)&&inRange(e.data||'',di,df));
-  const bmap={'Chamado p/ teste':'b-chamado','Não aceitou':'b-nao-aceitou','Não aprovamos':'b-nao-aprov','Pendente':'b-pendente'};
+  const bmap={'Chamado p/ teste':'b-chamado','Não aceitou':'b-nao-aceitou','Não aprovamos':'b-nao-aprov',Pendente:'b-pendente'};
   const tbody=document.getElementById('log-body');
-  if(!data.length){tbody.innerHTML=`<tr><td colspan="9" class="empty">Nenhum registro. Use a aba + Entrevista para lançar.</td></tr>`;return}
+  if(!data.length){tbody.innerHTML='<tr><td colspan="10" class="empty">Nenhum registro. Use a aba + Entrevista para lançar.</td></tr>';return}
   tbody.innerHTML=data.map(e=>`<tr>
     <td>${fmtDate(e.data)}</td><td>${e.hora||'—'}</td>
     <td><strong>${e.nome}</strong></td>
     <td style="font-size:11px;color:#6B7280">${e.tel||'—'}</td>
     <td>${e.unidade}</td><td>${e.funcao}</td>
     <td><span class="badge ${bmap[e.resultado]||'b-pendente'}">${e.resultado}</span></td>
-    <td style="font-size:11px;color:#6B7280;max-width:140px">${e.motivo||'—'}</td>
+    <td style="font-size:11px;color:#6B7280;max-width:120px">${e.motivo||'—'}</td>
     <td style="font-size:11px;color:#9CA3AF">${e.por||'—'}</td>
-  </tr>`).join('');
+    <td style="white-space:nowrap">
+      <button class="icon-btn" onclick="editEntrevista('${e.id}')" title="Editar">✏️</button>
+      <button class="icon-btn del" onclick="deleteEntrevista('${e.id}','${e.nome}')" title="Excluir">🗑️</button>
+    </td></tr>`).join('');
+}
+
+function editEntrevista(id){
+  const e=gEntrev.find(x=>x.id===id);if(!e)return;
+  openModal('Editar entrevista',`
+    <div class="form-grid">
+      <div class="fg"><label>Data</label><input type="date" id="ee-data" value="${e.data||''}"></div>
+      <div class="fg"><label>Horário</label><input type="time" id="ee-hora" value="${e.hora||''}"></div>
+      <div class="fg"><label>Nome</label><input type="text" id="ee-nome" value="${e.nome}"></div>
+      <div class="fg"><label>Telefone</label><input type="tel" id="ee-tel" value="${e.tel||''}"></div>
+      <div class="fg"><label>Unidade</label><select id="ee-unidade">${UNIT_OPTS}</select></div>
+      <div class="fg"><label>Função</label><input type="text" id="ee-funcao" value="${e.funcao}"></div>
+      <div class="fg"><label>Resultado</label><select id="ee-resultado">${RESULT_OPTS}</select></div>
+    </div>
+    <div class="fg"><label>Motivo</label><textarea id="ee-motivo">${e.motivo||''}</textarea></div>`,
+  ()=>{
+    e.data=val('ee-data');e.hora=val('ee-hora');e.nome=val('ee-nome').trim();
+    e.tel=val('ee-tel').trim();e.unidade=val('ee-unidade');
+    e.funcao=val('ee-funcao').trim();e.resultado=val('ee-resultado');e.motivo=val('ee-motivo').trim();
+    fbSet('entrevistas/'+id,e);closeModal();renderLog();renderDashboard();
+  });
+  sel('ee-unidade',e.unidade);sel('ee-resultado',e.resultado);
+}
+
+function deleteEntrevista(id,nome){
+  openConfirm(`Excluir a entrevista de "${nome}"?`,()=>{
+    gEntrev=gEntrev.filter(x=>x.id!==id);
+    fbDelete('entrevistas/'+id);renderLog();renderDashboard();
+  });
 }
 
 function addEntrevista(){
-  const nome=document.getElementById('f-nome').value.trim();
-  const unidade=document.getElementById('f-unidade').value;
-  const funcao=document.getElementById('f-funcao').value.trim();
+  const nome=val('f-nome').trim(),unidade=val('f-unidade'),funcao=val('f-funcao').trim();
   if(!nome||!unidade||!funcao){alert('Preencha nome, unidade e função.');return}
   const id='e'+Date.now();
-  const novo={id,data:document.getElementById('f-data').value,hora:document.getElementById('f-hora').value,nome,tel:document.getElementById('f-tel').value.trim(),unidade,funcao,resultado:document.getElementById('f-resultado').value,motivo:document.getElementById('f-motivo').value.trim(),por:userName};
-  gEntrev.unshift(novo);
-  if(db){db.ref('entrevistas/'+id).set(novo);setSyncOk()}
-  document.getElementById('f-nome').value='';document.getElementById('f-tel').value='';
-  document.getElementById('f-funcao').value='';document.getElementById('f-motivo').value='';
-  document.getElementById('f-resultado').value='Pendente';
-  goTab('entrevistas');document.querySelectorAll('.nav-btn')[3].classList.add('active');
-  document.querySelectorAll('.nav-btn').forEach((b,i)=>{if(i!==3)b.classList.remove('active')});
+  const novo={id,data:val('f-data'),hora:val('f-hora'),nome,tel:val('f-tel').trim(),unidade,funcao,resultado:val('f-resultado'),motivo:val('f-motivo').trim(),por:userName};
+  gEntrev.unshift(novo);fbSet('entrevistas/'+id,novo);
+  ['f-nome','f-tel','f-funcao','f-motivo'].forEach(i=>sel(i,''));sel('f-resultado','Pendente');
+  document.querySelectorAll('.nav-btn').forEach((b,i)=>b.classList.toggle('active',i===3));
+  currentTab='entrevistas';['dashboard','vagas','emteste','entrevistas','add-entrevista','add-teste','add-vaga'].forEach(i=>document.getElementById('tab-'+i).style.display=i==='entrevistas'?'block':'none');
+  renderLog();
 }
 
 function renderAll(){renderDashboard();renderVagas();renderTeste();renderLog()}

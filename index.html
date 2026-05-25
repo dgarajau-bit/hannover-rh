@@ -318,8 +318,7 @@ const FB_CONFIG = {
   projectId: "hannover-rh",
   storageBucket: "hannover-rh.firebasestorage.app",
   messagingSenderId: "765986578237",
-  appId: "1:765986578237:web:cf715f01b8de906519ef54",
-  measurementId: "G-NQ01DMCQTX"
+  appId: "1:765986578237:web:cf715f01b8de906519ef54"
 };
 
 const VAGAS_INICIAIS = [
@@ -386,7 +385,7 @@ document.getElementById('login-name').addEventListener('keydown',e=>{if(e.key===
 
 // ===== FIREBASE =====
 function initFirebase(){
-  if(FB_CONFIG.apiKey==='AIzaSyDVmuHvsagn7E9P_7OiFyacSemfTh4qGX0'){
+  if(FB_CONFIG.apiKey==='__DISABLED__'){
     gVagas=[...VAGAS_INICIAIS];
     document.getElementById('sync-label').textContent='⚠ modo local (configure Firebase)';
     document.getElementById('sync-label').style.color='#F59E0B';

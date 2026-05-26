@@ -394,13 +394,22 @@ function initFirebase(){
   try{
     firebase.initializeApp(FB_CONFIG);
     db=firebase.database();
-    db.ref('vagas').once('value',snap=>{
-      if(!snap.exists()||snap.numChildren()<20){
-        const o={};VAGAS_INICIAIS.forEach(v=>{o[v.id]=v});
-        db.ref('vagas').set(o);
-        console.log('✅ Vagas iniciais restauradas: '+VAGAS_INICIAIS.length);
+    // Verifica e restaura vagas se necessário
+    db.ref('vagas').once('value').then(snap=>{
+      const total=snap.exists()?snap.numChildren():0;
+      console.log('[RH] Vagas no banco:',total);
+      if(total<20){
+        // Apaga tudo e regrava limpo
+        return db.ref('vagas').remove().then(()=>{
+          const o={};VAGAS_INICIAIS.forEach(v=>{o[v.id]=v});
+          return db.ref('vagas').set(o);
+        }).then(()=>{
+          console.log('[RH] ✅ '+VAGAS_INICIAIS.length+' vagas restauradas!');
+        });
+      } else {
+        console.log('[RH] ✅ Vagas OK ('+total+' no banco)');
       }
-    });
+    }).catch(e=>console.error('[RH] Erro ao checar vagas:',e));
     db.ref('entrevistas').on('value',snap=>{
       gEntrev=[];
       if(snap.exists())snap.forEach(c=>gEntrev.push(c.val()));

@@ -395,7 +395,11 @@ function initFirebase(){
     firebase.initializeApp(FB_CONFIG);
     db=firebase.database();
     db.ref('vagas').once('value',snap=>{
-      if(!snap.exists()){const o={};VAGAS_INICIAIS.forEach(v=>{o[v.id]=v});db.ref('vagas').set(o)}
+      if(!snap.exists()||snap.numChildren()<20){
+        const o={};VAGAS_INICIAIS.forEach(v=>{o[v.id]=v});
+        db.ref('vagas').set(o);
+        console.log('✅ Vagas iniciais restauradas: '+VAGAS_INICIAIS.length);
+      }
     });
     db.ref('entrevistas').on('value',snap=>{
       gEntrev=[];

@@ -411,22 +411,35 @@ function initFirebase(){
       }
     }).catch(e=>console.error('[RH] Erro ao checar vagas:',e));
     db.ref('entrevistas').on('value',snap=>{
-      gEntrev=[];
-      if(snap.exists())snap.forEach(c=>gEntrev.push(c.val()));
-      gEntrev.sort((a,b)=>((b.data||'')+(b.hora||'')).localeCompare((a.data||'')+(a.hora||'')));
+      if(snap.exists()){
+        const raw=snap.val();
+        gEntrev=Object.values(raw);
+        gEntrev.sort((a,b)=>((b.data||'')+(b.hora||'')).localeCompare((a.data||'')+(a.hora||'')));
+      } else {
+        gEntrev=[];
+      }
       if(currentTab==='entrevistas')renderLog();
       if(currentTab==='dashboard')renderDashboard();
     });
     db.ref('testes').on('value',snap=>{
-      gTestes=[];
-      if(snap.exists())snap.forEach(c=>gTestes.push(c.val()));
-      gTestes.sort((a,b)=>(b.data||'').localeCompare(a.data||''));
+      if(snap.exists()){
+        const raw=snap.val();
+        gTestes=Object.values(raw);
+        gTestes.sort((a,b)=>(b.data||'').localeCompare(a.data||''));
+      } else {
+        gTestes=[];
+      }
       if(currentTab==='emteste')renderTeste();
       if(currentTab==='dashboard')renderDashboard();
     });
     db.ref('vagas').on('value',snap=>{
-      gVagas=[];
-      if(snap.exists())snap.forEach(c=>gVagas.push(c.val()));
+      if(snap.exists()){
+        const raw=snap.val();
+        gVagas=Object.values(raw);
+        console.log('[RH] Vagas carregadas:',gVagas.length);
+      } else {
+        gVagas=[];
+      }
       if(currentTab==='vagas')renderVagas();
       if(currentTab==='dashboard')renderDashboard();
     });
